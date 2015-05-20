@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'main/index'
+  get 'main/health_check'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

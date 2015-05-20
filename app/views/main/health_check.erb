@@ -1,0 +1,67 @@
+
+<section id="main" class="column">
+	<%if @is_master_live == true %>
+		<h4 class="alert_success">Master is LIVE!!</h4>
+	<%else%>
+		<h4 class="alert_error">Master is DEAD!!</h4>
+	<%end%>
+	<article class="module width_full">
+		<header><h3 class="tabs_involved">Master/Slave list</h3>
+		<ul class="tabs">
+   			<li><a href="#tab1">list</a></li>
+		</ul>
+		</header>
+
+		<div class="tab_container">
+			<div id="tab1" class="tab_content">
+			<table class="tablesorter" cellspacing="0"> 
+			<thead> 
+				<tr> 
+    				<th>server type</th> 
+    				<th>ip</th> 
+    				<th>port</th> 
+    				<th>status</th> 
+				</tr> 
+			</thead> 
+			<tbody> 
+				<tr> 
+    				<td>master</td> 
+    				<td><%=@master_host%></td> 
+    				<td><%=@master_port%></td> 
+    				<td>
+    					<%if@is_master_live == true%><%=image_tag("icn_alert_success.png")%>
+    					<%else%><%=image_tag("icn_alert_error.png")%>
+    					<%end%>
+    				</td> 
+				</tr> 
+				<tr> 
+    				<td>Ipsum Lorem Dolor Sit Amet</td> 
+    				<td>Freebies</td> 
+    				<td>6th April 2011</td> 
+   				 	<td><%=image_tag("icn_edit.png")%><%=image_tag("icn_trash.png")%></td> 
+				</tr>
+				<tr> 
+    				<td>Sit Amet Dolor Ipsum</td> 
+    				<td>Tutorials</td> 
+    				<td>10th April 2011</td> 
+    				<td><%=image_tag("icn_edit.png")%><%=image_tag("icn_trash.png")%></td> 
+				</tr> 
+				<tr> 
+    				<td>Dolor Lorem Amet</td> 
+    				<td>Articles</td> 
+    				<td>16th April 2011</td> 
+   				 	<td><%=image_tag("icn_edit.png")%><%=image_tag("icn_trash.png")%></td> 
+				</tr>
+				<tr> 
+    				<td>Dolor Lorem Amet</td> 
+    				<td>Articles</td> 
+    				<td>16th April 2011</td> 
+   				 	<td><%=image_tag("icn_edit.png")%><%=image_tag("icn_trash.png")%></td> 
+				</tr>  
+			</tbody> 
+			</table>
+			</div><!-- end of #tab1 -->
+		</div><!-- end of .tab_container -->
+		
+		</article><!-- end of content manager article -->
+</section>

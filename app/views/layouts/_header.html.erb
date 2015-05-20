@@ -1,0 +1,47 @@
+<head>
+	<meta charset="utf-8"/>
+	<title>Dashboard I Admin Panel</title>
+	<%= stylesheet_link_tag  'layout', media: 'screen', 'data-turbolinks-track' => true %>
+	<!--[if lt IE 9]>
+	<%= stylesheet_link_tag  'ie.css', media: 'screen', 'data-turbolinks-track' => true %>
+	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	<%= javascript_include_tag 'jquery-1.5.2.min.js', 'data-turbolinks-track' => true %>
+	<%= javascript_include_tag 'hideshow.js', 'data-turbolinks-track' => true %>
+	<%= javascript_include_tag 'jquery.tablesorter.min.js', 'data-turbolinks-track' => true %>
+	<%= javascript_include_tag 'jquery.equalHeight.js', 'data-turbolinks-track' => true %>
+
+	<script type="text/javascript">
+	$(document).ready(function() 
+    	{ 
+      	  $(".tablesorter").tablesorter(); 
+   	 } 
+	);
+	$(document).ready(function() {
+
+	//When page loads...
+	$(".tab_content").hide(); //Hide all content
+	$("ul.tabs li:first").addClass("active").show(); //Activate first tab
+	$(".tab_content:first").show(); //Show first tab content
+
+	//On Click Event
+	$("ul.tabs li").click(function() {
+
+		$("ul.tabs li").removeClass("active"); //Remove any "active" class
+		$(this).addClass("active"); //Add "active" class to selected tab
+		$(".tab_content").hide(); //Hide all tab content
+
+		var activeTab = $(this).find("a").attr("href"); //Find the href attribute value to identify the active tab + content
+		$(activeTab).fadeIn(); //Fade in the active ID content
+		return false;
+	});
+
+});
+    </script>
+    <script type="text/javascript">
+    $(function(){
+        $('.column').equalHeight();
+    });
+</script>
+
+</head>
