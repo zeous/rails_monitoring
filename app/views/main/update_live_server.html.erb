@@ -1,0 +1,45 @@
+
+<section id="main" class="column">
+	<%if @is_success == true %>
+		<h4 class="alert_success">SUCCESS!!</h4>
+	<%else%>
+		<h4 class="alert_error">FAIL!!</h4>
+	<%end%>
+	<article class="module width_full">
+		<header><h3 class="tabs_involved">Live/Total Server List</h3>
+		<ul class="tabs">
+   			<li><a href="#tab1">list</a></li>
+		</ul>
+		</header>
+		<div class="tab_container">
+			<div id="tab1" class="tab_content">
+			<table class="tablesorter" cellspacing="0"> 
+			<thead> 
+				<tr> 
+    				<th>server type</th> 
+    				<th>ip</th> 
+    				<th>port</th> 
+				</tr> 
+			</thead> 
+			<tbody> 
+				<% @live_server.each { |target|  %>
+				<tr> 
+    				<td>slave</td> 
+    				<td><%= target["host"]%></td> 
+    				<td><%= target["port"]%></td> 
+				</tr>
+				<% }%> 
+				<tr><td colspan=3> <b>total list</b></td></tr>
+				<% @total_server.each { |target|  %>
+				<tr> 
+    				<td>slave</td> 
+    				<td><%= target["host"]%></td> 
+    				<td><%= target["port"]%></td> 
+				</tr>
+				<% }%>   
+			</tbody> 
+			</table>
+			</div><!-- end of #tab1 -->
+		</div><!-- end of .tab_container -->	
+	</article><!-- end of content manager article -->
+</section>

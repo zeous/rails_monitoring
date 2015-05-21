@@ -1,0 +1,46 @@
+
+<section id="main" class="column">
+	<%if @is_success == true %>
+		<h4 class="alert_success">SUCCESS</h4>
+	<%else%>
+		<h4 class="alert_error">FAIL</h4>
+	<%end%>
+	<article class="module width_full">
+		<header><h3 class="tabs_involved">today action log</h3>
+		<ul class="tabs">
+   			<li><a href="#tab1">list</a></li>
+		</ul>
+		</header>
+
+		<div class="tab_container">
+			<div id="tab1" class="tab_content">
+			<table class="tablesorter" cellspacing="0"> 
+			<thead> 
+				<tr> 
+    				<th width="25%">action name</th> 
+    				<th width="15%">total count</th> 
+    				<th width="10%">doing?</th> 
+    				<th width="25%">start time</th> 
+    				<th width="25%">end time</th> 
+				</tr> 
+			</thead> 
+			<tbody> 
+				<% @result.each { |target|  %>
+				<tr> 
+    				<td><%= target["action_name"]%></td> 
+    				<td><%= target["total_count"]%></td> 
+   				 	<td><% if target["is_crawling"] == false %><%=image_tag("icn_alert_success.png")%>
+   				 		<%else%><%=image_tag("icn_alert_warning.png")%>
+    					<%end%>
+   				 	</td>
+   				 	<td><%= target["start_dttm"]%></td>  
+   				 	<td><%= target["end_dttm"]%></td>  
+				</tr>
+				<% }%>   
+			</tbody> 
+			</table>
+			</div><!-- end of #tab1 -->
+		</div><!-- end of .tab_container -->
+		
+		</article><!-- end of content manager article -->
+</section>

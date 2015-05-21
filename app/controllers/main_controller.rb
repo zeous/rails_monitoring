@@ -13,9 +13,38 @@ class MainController < ApplicationController
   	@master_port = RailsMonitoring::Application.config.master_port
   	if(response_hash["responseCode"] == 200)
   		@is_master_live = true
-	else
-		@is_master_live = false
-	end
+	  else
+		  @is_master_live = false
+	  end
+    if @is_master_live 
+      slave_json = send_protocol('healthCheck')
+      slave_hash = JSON.parse(slave_json)
+      @slave_result = slave_hash["slaves"]
+    end
+  end
+  def today_action_log
+    response_json = send_protocol('todayActionLog')
+    response_hash = JSON.parse(response_json)
+    if(response_hash["responseCode"] == 200)
+      @is_success = true
+      @result = response_hash["result"]
+    else
+      @is_success = false
+      @result = []
+    end
+  end
+  def update_live_server
+    response_json = send_protocol('updateLiveServer')
+    response_hash = JSON.parse(response_json)
+    if(response_hash["responseCode"] == 200)
+      @is_success = true
+      @total_server = response_hash["total_server"]
+      @live_server = response_hash["live_server"]
+    else
+      @is_success = false
+      @total_server = []
+      @live_server = []
+    end
   end
 
   private
@@ -31,8 +60,8 @@ class MainController < ApplicationController
 			socket_server.write(msg_pack)
 			socket_server.write(send_msg)
 			response_size = socket_server.read(4)
-			response_size = response_size.unpack('N')[0]
-			response = socket_server.read(response_size)
+      response_size = response_size.unpack('N')[0]
+			response = socket_server.read
 			return response
 		end
 	rescue Errno::ECONNREFUSED
